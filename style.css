@@ -25,20 +25,47 @@ h1{
 }
 
 p{
-    font-size: calc(0.5rem + 1.4vw);
+    font-size: calc(0.8rem + 1.4vw);
     margin-top: 2vh;
 }
 
-button{
+/* button{
     font-size: calc(0.5rem + 1.4vw);
     background-color: rgb(22, 20, 20);
     border: none;
     margin-left: 4px;
-}
+} */
 
 .main{
     display: flex;
     align-items: flex-end;
+}
+
+.textBox{
+    background-color: rgb(22, 20, 20);
+    border: none;
+    color: rgb(63, 207, 63);
+    text-shadow: 0 0 6px rgba(19, 43, 19, 0.92), 0 0 20px rgba(24, 163, 98, 0.92);
+    font-size: calc(0.8rem + 1.4vw);
+    margin-left: 10px;
+    text-transform:uppercase;
+    width: 3vw;
+    
+}
+
+.inputText{
+    font-size: calc(0.8rem + 1.4vw);
+    font-weight: 400;
+    color: rgb(63, 207, 63);
+    text-shadow: 0 0 6px rgba(19, 43, 19, 0.92), 0 0 20px rgba(24, 163, 98, 0.92);
+    margin-left:1vw;
+}
+
+.inputTextBlack{
+    font-size: calc(0.8rem + 1.4vw);
+    font-weight: 400;
+    color: rgb(22, 20, 20);
+    margin-left:1vw;
 }
 
   
