@@ -3,6 +3,10 @@ let headerH1 = document.querySelector('#headerH1');
 let headerP = document.querySelector('#headerP');
 let conferma = document.querySelector('#conferma');
 let inputText = document.querySelector('#inputText');
+let inputText1 =document.querySelector('#inputText1') 
+let seiSicuro = document.querySelector('#seiSicuro');
+let inputConferma = document.querySelector('#inputConferma')
+
 
 
 //----------------------------------SEZIONE HEADER----------------------------------------
@@ -11,6 +15,7 @@ let inputText = document.querySelector('#inputText');
 let txtH1 = 'BENVENUTO AL TERMLINK NUKA-STORE INDUSTRIES (TM)';
 let txtP = `Siamo lieti di vederti nel nostro negozio di approvvigionamento NUKA-STORE. Qui troverai tutto ciò di cui hai bisogno per sopravvivere nel deserto: armi, armature, medicinali e molto altro ancora. Ricorda ogni Caps é importante.`;
 let txtConferma = `Vuoi procedere con gli acquisti? digita SI/NO`;
+let txtSeiSicuro = `Sei sicuro?`
 
 //FUNZIONE DA RICHIAMARE PER TESTO GENERATO LETTERA PER LETTERA
 function typeWriter(elemento, testo, velocita) {
@@ -51,6 +56,10 @@ setInterval(()=>{
   }
 },700);
 
+function ciao (){
+  
+}
+
 // PERMETTE ALL'INPUT TEXT > DI ESSERE VISUALIZZATO SOLO QUANDO ESCE LA SCRITTA SI/NO
 
 let observer = new MutationObserver(function(mutations) {
@@ -66,12 +75,42 @@ let observer = new MutationObserver(function(mutations) {
   });
 });
 
-// Avvia l'osservatore
+let observer1 = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      // quando viene mostrata la stringa sei sicuro?
+    if (document.body.innerText.includes('Sei sicuro?')) {
+      
+      inputText.style.display = 'none';
+      inputText1.style.display = 'block';
+    } else {
+      // Altrimenti, nascondi >
+      inputText1.style.display ='none';
+    }
+  });
+});
+
+// OBSERVE
+observer1.observe(document.body, {
+  childList: true,
+  subtree: true,
+  characterData: true
+});
+
+// OBSERVE
 observer.observe(document.body, {
   childList: true,
   subtree: true,
   characterData: true
 });
+
+inputConferma.addEventListener('keydown',(e)=> {
+    let input = e.target.value;
+    if (e.key === 'Enter' && input.trim() === 'si') {
+      typeWriter(seiSicuro, txtSeiSicuro, 50);
+
+    }
+  });
+
 
 
 
