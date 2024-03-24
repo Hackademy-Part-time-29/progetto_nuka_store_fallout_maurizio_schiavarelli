@@ -82,6 +82,7 @@ observer.observe(document.body, {
       typeWriter(seiSicuro, txtSeiSicuro, 50);
       spostaCursore.style.display = 'none';
       inputConferma.value = ''
+      inputConferma.style.display = 'none'
       setTimeout(()=>{
         spostaCursore1.appendChild(cursore1);
       },680)
