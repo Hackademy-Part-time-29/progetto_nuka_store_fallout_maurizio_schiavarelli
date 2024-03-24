@@ -29,13 +29,17 @@ p{
     margin-top: 2vh;
 }
 
-/* button{
-    font-size: calc(0.5rem + 1.4vw);
-    background-color: rgb(22, 20, 20);
-    border: none;
-    margin-left: 4px;
-} */
 
+@keyframes blink {
+    0% {visibility: visible;}
+    50% {visibility: hidden;}
+    100% {visibility: visible;}
+  }
+  
+  .testo-lampeggiante {
+    animation: blink 1s step-end infinite;
+  }
+  
 .flex{
     display: flex;
     align-items: flex-end;
@@ -59,6 +63,7 @@ p{
     color: rgb(63, 207, 63);
     text-shadow: 0 0 6px rgba(19, 43, 19, 0.92), 0 0 20px rgba(24, 163, 98, 0.92);
     margin-left:1vw;
+    animation: blink 1s step-end infinite;
 }
 
 .inputTextBlack{

@@ -5,9 +5,9 @@ let conferma = document.querySelector('#conferma');
 let inputText = document.querySelector('#inputText');
 let inputText1 =document.querySelector('#inputText1') 
 let seiSicuro = document.querySelector('#seiSicuro');
-let inputConferma = document.querySelector('#inputConferma')
-
-
+let inputConferma = document.querySelector('#inputConferma');
+let spostaCursore = document.querySelector('#spostaCursore');
+let spostaCursore1 = document.querySelector('#spostaCursore1');
 
 //----------------------------------SEZIONE HEADER----------------------------------------
 
@@ -28,8 +28,6 @@ function typeWriter(elemento, testo, velocita) {
     };
   };
   scrivi();
-  
-  
 };
 
 //MOSTRA IL TITOLO H1 'BENVENUTO AL TERMLINK NUKA-STORE INDUSTRIES (TM)';
@@ -43,57 +41,31 @@ setTimeout(()=>{
 //MOSTRA LA SELEZIONE CONFERMA SI/NO
 setTimeout(()=>{
   typeWriter(conferma,txtConferma, 50 )
-},8000)
+},8000);
 
-//PERMETTE ALL'INPUT TEXT > DI LAMPEGGIARE
-setInterval(()=>{
-  if(inputText.classList.contains('inputText')){
-    inputText.classList.remove('inputText');
-    inputText.classList.add('inputTextBlack');
-  }else{
-    inputText.classList.add('inputText');
-    inputText.classList.remove('inputTextBlack');
-  }
-},700);
+// PERMETTE ALL'INPUT TEXT > DI ESSERE SPOSTATO DI VOLTA IN VOLTA
+let cursore = document.createElement('span');
+cursore.classList.add('inputText');
+cursore.innerHTML = `>`;
 
-function ciao (){
-  
-}
-
-// PERMETTE ALL'INPUT TEXT > DI ESSERE VISUALIZZATO SOLO QUANDO ESCE LA SCRITTA SI/NO
+let cursore1 = document.createElement('span');
+cursore1.classList.add('inputText');
+cursore1.innerHTML = `>`;
 
 let observer = new MutationObserver(function(mutations) {
+  // Disattiva l'observer
+  observer.disconnect();
+
   mutations.forEach(function(mutation) {
-      // quando viene mostrata la stringa SI/NO
+    // quando viene mostrata la stringa SI/NO
     if (document.body.innerText.includes('SI/NO')) {
-      // Mostra >
-      inputText.style.display = 'block';
-    } else {
-      // Altrimenti, nascondi >
-      inputText.style.display = 'none';
-    }
+      //appende cursore
+      spostaCursore.appendChild(cursore);
+    };
   });
-});
 
-let observer1 = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-      // quando viene mostrata la stringa sei sicuro?
-    if (document.body.innerText.includes('Sei sicuro?')) {
-      
-      inputText.style.display = 'none';
-      inputText1.style.display = 'block';
-    } else {
-      // Altrimenti, nascondi >
-      inputText1.style.display ='none';
-    }
-  });
-});
-
-// OBSERVE
-observer1.observe(document.body, {
-  childList: true,
-  subtree: true,
-  characterData: true
+ // Riattiva l'observer
+  observer.observe(document.body, { childList: true, subtree: true });
 });
 
 // OBSERVE
@@ -103,14 +75,20 @@ observer.observe(document.body, {
   characterData: true
 });
 
-inputConferma.addEventListener('keydown',(e)=> {
-    let input = e.target.value;
-    if (e.key === 'Enter' && input.trim() === 'si') {
+ //FUNZIONE CHE MI PERMETTE DI SELEZIONARE SI O NO
+      inputConferma.addEventListener('keydown',(e)=> {
+      let input = e.target.value;
+      if (e.key === 'Enter' && input.trim().toLowerCase() === 'si') {
       typeWriter(seiSicuro, txtSeiSicuro, 50);
+      spostaCursore.style.display = 'none';
+      inputConferma.value = ''
+      setTimeout(()=>{
+        spostaCursore1.appendChild(cursore1);
+      },680)
+      ;
 
     }
-  });
-
+});
 
 
 
