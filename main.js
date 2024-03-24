@@ -3,7 +3,7 @@ let headerH1 = document.querySelector('#headerH1');
 let headerP = document.querySelector('#headerP');
 let conferma = document.querySelector('#conferma');
 let inputText = document.querySelector('#inputText');
-let inputText1 =document.querySelector('#inputText1') 
+let inputText1 = document.querySelector('#inputText1')
 let seiSicuro = document.querySelector('#seiSicuro');
 let inputConferma = document.querySelector('#inputConferma');
 let inputConferma1 = document.querySelector('#inputConferma1');
@@ -25,11 +25,11 @@ let certo = `Vabene ecco i tuoi articoli :`
 //FUNZIONE DA RICHIAMARE PER TESTO GENERATO LETTERA PER LETTERA
 function typeWriter(elemento, testo, velocita) {
   let i = 0;
-  function scrivi(){
-  if (i < testo.length) {
-    elemento.innerHTML += testo.charAt(i);
-    i++;
-    setTimeout(scrivi, velocita);
+  function scrivi() {
+    if (i < testo.length) {
+      elemento.innerHTML += testo.charAt(i);
+      i++;
+      setTimeout(scrivi, velocita);
     };
   };
   scrivi();
@@ -39,14 +39,14 @@ function typeWriter(elemento, testo, velocita) {
 typeWriter(headerH1, txtH1, 50);
 
 //MOSTRA IL PARAGRAFO HEADERP;
-setTimeout(()=>{
+setTimeout(() => {
   typeWriter(headerP, txtP, 20)
-},3000)
+}, 3000)
 
 //MOSTRA LA SELEZIONE CONFERMA SI/NO
-setTimeout(()=>{
-  typeWriter(conferma,txtConferma, 50 )
-},8000);
+setTimeout(() => {
+  typeWriter(conferma, txtConferma, 50)
+}, 8000);
 
 // PERMETTE ALL'INPUT TEXT > DI ESSERE SPOSTATO DI VOLTA IN VOLTA
 let cursore = document.createElement('span');
@@ -63,11 +63,11 @@ cursore2.innerHTML = `>`;
 
 
 
-let observer = new MutationObserver(function(mutations) {
+let observer = new MutationObserver(function (mutations) {
   // Disattiva l'observer
   observer.disconnect();
 
-  mutations.forEach(function(mutation) {
+  mutations.forEach(function (mutation) {
     // quando viene mostrata la stringa SI/NO
     if (document.body.innerText.includes('SI/NO')) {
       //appende cursore
@@ -75,7 +75,7 @@ let observer = new MutationObserver(function(mutations) {
     };
   });
 
- // Riattiva l'observer
+  // Riattiva l'observer
   observer.observe(document.body, { childList: true, subtree: true });
 });
 
@@ -86,86 +86,77 @@ observer.observe(document.body, {
   characterData: true
 });
 
- //FUNZIONE CHE MI PERMETTE DI SELEZIONARE SI O NO
-      inputConferma.addEventListener('keydown',(e)=> {
-      let input = e.target.value;
-      if (e.key === 'Enter' && input.trim().toLowerCase() === 'si' ) {
+fetch('/annunci.json').then((response) => response.json()).then((data) => {
+
+
+  //FUNZIONE CHE MI PERMETTE DI SELEZIONARE SI O NO
+  inputConferma.addEventListener('keydown', (e) => {
+    let input = e.target.value;
+    if (e.key === 'Enter' && input.trim().toLowerCase() === 'si') {
       typeWriter(seiSicuro, txtSeiSicuro, 50);
       spostaCursore.style.display = 'none';
       inputConferma.value = ''
       inputConferma.style.display = 'none'
-      setTimeout(()=>{
+      setTimeout(() => {
         spostaCursore1.appendChild(cursore1);
-      },2900);
-    }else if((input.trim().toLowerCase() ==='no')){
+      }, 2900);
+    } else if ((input.trim().toLowerCase() === 'no')) {
       typeWriter(articoli, nonNeSonoSicuro, 50);
       spostaCursore1.style.display = 'none';
       inputConferma1.value = '';
       inputConferma1.style.display = 'none';
-      setTimeout(()=>{
+      setTimeout(() => {
         location.reload();
-      },9000);
+      }, 9000);
     }
-});
+  });
 
-//FUNZIONE CHE MI PERMETTE DI SELEZIONARE certo O non ne sono sicuro
- inputConferma1.addEventListener('keydown',(e)=> {
-  let input = e.target.value;
-  if (e.key === 'Enter' && input.trim().toLowerCase() === 'certo') {
-  typeWriter(articoli, certo, 50);
-  spostaCursore1.style.display = 'none';
-  inputConferma1.value = ''
-  inputConferma1.style.display = 'none';
-  //genera articoli
-}else if(e.key === 'Enter' && input.trim().toLowerCase() === 'non ne sono sicuro'){
-  typeWriter(articoli, nonNeSonoSicuro, 50);
-  spostaCursore1.style.display = 'none';
-  inputConferma1.value = '';
-  inputConferma1.style.display = 'none';
-  setTimeout(()=>{
-    location.reload();
-  },9000);
-};
-});
+  //FUNZIONE CHE MI PERMETTE DI SELEZIONARE certo O non ne sono sicuro
+  inputConferma1.addEventListener('keydown', (e) => {
+    let input = e.target.value;
+    if (e.key === 'Enter' && input.trim().toLowerCase() === 'certo') {
+      typeWriter(articoli, certo, 50);
+      spostaCursore1.style.display = 'none';
+      inputConferma1.value = ''
+      inputConferma1.style.display = 'none';
+      //genera articoli
+      setTimeout(()=>{
+        showCard();
+      },2000);
+    } else if (e.key === 'Enter' && input.trim().toLowerCase() === 'non ne sono sicuro') {
+      typeWriter(articoli, nonNeSonoSicuro, 50);
+      spostaCursore1.style.display = 'none';
+      inputConferma1.value = '';
+      inputConferma1.style.display = 'none';
+      setTimeout(() => {
+        location.reload();
+      }, 9000);
+    };
+  });
 
-function arrayTypeWriter(elemento, array, velocita) {
   let i = 0;
-  let j = 0;
 
-  function scrivi() {
-    if (i < array.length) {
-      if (j < array[i].length) {
-        elemento.innerHTML += array[i].testo.charAt(j);
-        j++;
-        setTimeout(scrivi, velocita);
-      } else {
-        i++;
-        j = 0;
-        elemento.innerHTML += '<br>'; // Aggiunge una nuova riga dopo ogni frase
-        setTimeout(scrivi, velocita);
-      }
-    }
-  };
-
-  scrivi();
-};
-
-fetch('/annunci.json').then((response) => response.json()).then((data)=>{
-  function showCard (data) {
-    data.forEach((article)=>{
-      let articleCard = document.createElement('div');
-      articleCard.classList.add('articoli', 'flex');
-      articleCard.innerHTML = `
-      <p>></p>
+  function showCard() {
+    let article = data[i];
+    let articleCard = document.createElement('div');
+    articleCard.classList.add('articoli', 'flex');
+    articleCard.innerHTML = `
       <p>NOME ARTICOLO : <span>${article.name}</span></p>
-        <p>CATEGORIA: <span>${article.category}</span></p>
-        <p>PREZZO: <span>${article.price}</span></p>
-      `
-      articleWrapper.appendChild(articleCard);
-    });
-  };
+      <p>CATEGORIA: <span>${article.category}</span></p>
+      <p>PREZZO: <span>${article.price}</span></p>
+    `
+    articleWrapper.appendChild(articleCard);
 
-  showCard(data);
-})
+    i++;
+    if (i < data.length) {
+      setTimeout(showCard, 100);
+    };
+  };
+});
+
+
+
+
+
 
 
