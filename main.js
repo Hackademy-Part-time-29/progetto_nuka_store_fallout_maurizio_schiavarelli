@@ -19,7 +19,7 @@ let txtH1 = 'BENVENUTO AL TERMLINK NUKA-STORE INDUSTRIES (TM)';
 let txtP = `Siamo lieti di vederti nel nostro negozio di approvvigionamento NUKA-STORE. Qui troverai tutto ciò di cui hai bisogno per sopravvivere nel deserto: armi, armature, medicinali e molto altro ancora. Ricorda ogni Caps é importante.`;
 let txtConferma = `Vuoi procedere con gli acquisti? digita SI/NO`;
 let txtSeiSicuro = `Sei sicuro? digita CERTO/NON NE SONO SICURO`;
-let nonNeSonoSicuro = `Ok, ti lascio un po di tempo per pensare.Il programma si riavviera tra 5 secondi`;
+let nonNeSonoSicuro = `Ok, ti lascio un po di tempo per pensare.Il programma si riavviera tra 5 secondi.`;
 let certo = `Vabene ecco i tuoi articoli :`
 
 //FUNZIONE DA RICHIAMARE PER TESTO GENERATO LETTERA PER LETTERA
@@ -143,7 +143,7 @@ fetch('/annunci.json').then((response) => response.json()).then((data) => {
     articleCard.innerHTML = `
       <p>NOME ARTICOLO : <span>${article.name}</span></p>
       <p>CATEGORIA: <span>${article.category}</span></p>
-      <p>PREZZO: <span>${article.price}</span></p>
+      <p>PREZZO: <span>${Math.floor(article.price)} caps</span></p>
     `
     articleWrapper.appendChild(articleCard);
 

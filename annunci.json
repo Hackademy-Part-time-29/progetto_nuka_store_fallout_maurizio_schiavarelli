@@ -1,26 +1,26 @@
 [
     {
         "id":1,
-        "name": "Huawei X5",
-        "category": "Elettronica",
+        "name": "Big boy",
+        "category": "Armi",
         "price": "120.12"
     },
     {
         "id": 2,
-        "name": "Fiat 500",
-        "category": "Motori",
+        "name": "Deathclaw Gauntlet",
+        "category": "Armi",
         "price": "2000.32"
     },
     {
         "id": 3,
-        "name": "Mazza da Baseball",
-        "category": "Sport",
+        "name": "10 mm",
+        "category": "Armi",
         "price": "20.15"
     },
     {
         "id": 4,
         "name": "Bilocale",
-        "category": "Immobili",
+        "category": "Armi",
         "price": "30000.54"
     },
     {
@@ -37,14 +37,14 @@
     },
     {
         "id": 7,
-        "name": "Pala",
-        "category": "Giardinaggio",
+        "name": "Pistola Gamma",
+        "category": "Armi",
         "price":"30.45"
     },
     {
         "id": 8,
-        "name": "Master of Pupo",
-        "category": "Musica",
+        "name": "Syringer",
+        "category": "Armi",
         "price": "15.64"
     },
     {
@@ -61,8 +61,8 @@
     },
     {
         "id": 11,
-        "name": "Pallone da calcio",
-        "category": "Sport",
+        "name": "Fucile Sparachiodi",
+        "category": "Armi",
         "price": "30.12"
     },
     {
@@ -122,8 +122,8 @@
     },
     {
         "id": 22,
-        "name": "Scrivania in vetro",
-        "category": "Arredamento",
+        "name": "Fat Man",
+        "category": "Armi",
         "price": "600.63"
     },
     {
@@ -134,8 +134,8 @@
     },
     {
         "id": 24,
-        "name": "Compilation Pupo",
-        "category": "Musica",
+        "name": "Laser Gatling",
+        "category": "Armi",
         "price": "9.93"
     },
     {
@@ -158,8 +158,8 @@
     },
     {
         "id": 28,
-        "name": "Posto augo",
-        "category": "Immobili",
+        "name": "Cryolator",
+        "category": "Armi",
         "price": "2200.63"
     },
     {
@@ -219,8 +219,8 @@
     },
     {
         "id": 39,
-        "name": "Semi",
-        "category": "Giardinaggio",
+        "name": "Spara e Prega (Mitragliatrice)",
+        "category": "Armi",
         "price": "4.43"
     },
     {
@@ -279,8 +279,8 @@
     },
     {
         "id": 49,
-        "name": "Modem",
-        "category": "Mimmo",
+        "name": "MIRV Sperimentale",
+        "category": "Armi",
         "price": "2.99"
     }
 ]
